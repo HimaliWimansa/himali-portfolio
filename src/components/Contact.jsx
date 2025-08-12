@@ -1,12 +1,18 @@
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useState } from 'react';
 import { init, send } from '@emailjs/browser';
 
 // Initialize EmailJS with your Public Key (User ID)
 init('k0NRg3IvJo5j-EtVV');
 
+const notificationVariants = {
+  hidden: { opacity: 0, y: -20 },
+  visible: { opacity: 1, y: 0 }
+};
+
 const Contact = () => {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+  const [notification, setNotification] = useState({ message: '', type: '' }); // type: 'success' or 'error'
 
   const handleInputChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -20,34 +26,56 @@ const Contact = () => {
       'template_o6p9nlh',       // your Template ID
       formData                  // the data object with name, email, message
     )
-    .then(() => {
-      alert("Message sent! ");
-      setFormData({ name: '', email: '', message: '' });
-    })
-    .catch((error) => {
-      console.error("Email send error:", error);
-      alert('Failed to send message. Please try again later.');
-    });
+      .then(() => {
+        setNotification({ message: "Message sent! I'll get back to you soon.", type: 'success' });
+        setFormData({ name: '', email: '', message: '' });
+        setTimeout(() => setNotification({ message: '', type: '' }), 4000);
+      })
+      .catch((error) => {
+        console.error("Email send error:", error);
+        setNotification({ message: 'Failed to send message. Please try again later.', type: 'error' });
+        setTimeout(() => setNotification({ message: '', type: '' }), 4000);
+      });
   };
 
   return (
-    <section id="contact" className="py-20">
+    <section id="contact" className="py-20 relative">
       <div className="max-w-2xl mx-auto px-6">
         <motion.h2
-  initial={{ opacity: 0, y: 20 }}
-  whileInView={{ opacity: 1, y: 0 }}
-  transition={{ duration: 0.6 }}
-  viewport={{ once: true }}
-  className="text-5xl font-bold text-center mb-16 text-white tracking-wide drop-shadow-lg"
->
-  Get In Touch
-</motion.h2>
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="text-5xl font-bold text-center mb-16 text-white tracking-wide drop-shadow-lg"
+        >
+          Get In Touch
+        </motion.h2>
 
-        <motion.form 
+        {/* Notification */}
+        <AnimatePresence>
+          {notification.message && (
+            <motion.div
+              key="notification"
+              initial="hidden"
+              animate="visible"
+              exit="hidden"
+              variants={notificationVariants}
+              transition={{ duration: 0.3 }}
+              className={`fixed top-10 left-1/2 -translate-x-1/2 z-50 px-6 py-3 rounded shadow-lg text-white max-w-sm text-center
+                ${notification.type === 'success' ? 'bg-green-500' : 'bg-red-500'}`}
+              role="alert"
+              aria-live="assertive"
+            >
+              {notification.message}
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        <motion.form
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          onSubmit={handleSubmit} 
+          onSubmit={handleSubmit}
           className="space-y-6"
         >
           <div>
@@ -84,7 +112,7 @@ const Contact = () => {
               className="w-full px-4 py-3 bg-white/10 backdrop-blur-sm border border-white/30 rounded-lg text-white placeholder-white/50 focus:outline-none focus:border-orange-400 focus:ring-1 focus:ring-orange-400/30 resize-none transition-all duration-300"
               placeholder="Enter your message"
               required
-            ></textarea>
+            />
           </div>
           <motion.button
             whileHover={{ scale: 1.02 }}

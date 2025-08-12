@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/himali-portfolio/static/css/main.30a66c86.css",
+    "main.js": "/himali-portfolio/static/js/main.2d7e17b3.js",
+    "static/media/hotel.png": "/himali-portfolio/static/media/hotel.566baba1b3660319035a.png",
+    "static/media/wimansa.png": "/himali-portfolio/static/media/wimansa.c12d1b66b10a1e15f6f7.png",
+    "static/media/water_quality.png": "/himali-portfolio/static/media/water_quality.26d4337b429988ca8d21.png",
+    "static/media/AgroRobot.jpg": "/himali-portfolio/static/media/AgroRobot.128d64aac79ca7c7d058.jpg",
+    "index.html": "/himali-portfolio/index.html",
+    "main.30a66c86.css.map": "/himali-portfolio/static/css/main.30a66c86.css.map",
+    "main.2d7e17b3.js.map": "/himali-portfolio/static/js/main.2d7e17b3.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.30a66c86.css",
+    "static/js/main.2d7e17b3.js"
+  ]
+}

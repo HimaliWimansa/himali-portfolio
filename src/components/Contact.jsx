@@ -12,7 +12,7 @@ const notificationVariants = {
 
 const Contact = () => {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
-  const [notification, setNotification] = useState({ message: '', type: '' }); // type: 'success' or 'error'
+  const [notification, setNotification] = useState({ message: '', type: '' });
 
   const handleInputChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -39,14 +39,14 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="py-20 relative">
-      <div className="max-w-2xl mx-auto px-6">
+    <section id="contact" className="py-16 md:py-20 relative">
+      <div className="max-w-2xl mx-auto px-4 sm:px-6">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="text-5xl font-bold text-center mb-16 text-white tracking-wide drop-shadow-lg"
+          className="text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-12 md:mb-16 text-white tracking-wide drop-shadow-lg"
         >
           Get In Touch
         </motion.h2>
@@ -61,7 +61,7 @@ const Contact = () => {
               exit="hidden"
               variants={notificationVariants}
               transition={{ duration: 0.3 }}
-              className={`fixed top-10 left-1/2 -translate-x-1/2 z-50 px-6 py-3 rounded shadow-lg text-white max-w-sm text-center
+              className={`fixed top-4 md:top-10 left-1/2 -translate-x-1/2 z-50 px-4 py-2 md:px-6 md:py-3 rounded shadow-lg text-white max-w-xs sm:max-w-sm text-sm md:text-base text-center
                 ${notification.type === 'success' ? 'bg-green-500' : 'bg-red-500'}`}
               role="alert"
               aria-live="assertive"
@@ -76,7 +76,7 @@ const Contact = () => {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           onSubmit={handleSubmit}
-          className="space-y-6"
+          className="space-y-4 md:space-y-6"
         >
           <div>
             <label className="block text-white text-sm mb-2 font-medium">Name</label>
@@ -85,7 +85,7 @@ const Contact = () => {
               name="name"
               value={formData.name}
               onChange={handleInputChange}
-              className="w-full px-4 py-3 bg-white/10 backdrop-blur-sm border border-white/30 rounded-lg text-white placeholder-white/50 focus:outline-none focus:border-orange-400 focus:ring-1 focus:ring-orange-400/30 transition-all duration-300"
+              className="w-full px-4 py-2 md:py-3 bg-white/10 backdrop-blur-sm border border-white/30 rounded-lg text-white placeholder-white/50 focus:outline-none focus:border-orange-400 focus:ring-1 focus:ring-orange-400/30 transition-all duration-300"
               placeholder="Enter your name"
               required
             />
@@ -97,7 +97,7 @@ const Contact = () => {
               name="email"
               value={formData.email}
               onChange={handleInputChange}
-              className="w-full px-4 py-3 bg-white/10 backdrop-blur-sm border border-white/30 rounded-lg text-white placeholder-white/50 focus:outline-none focus:border-orange-400 focus:ring-1 focus:ring-orange-400/30 transition-all duration-300"
+              className="w-full px-4 py-2 md:py-3 bg-white/10 backdrop-blur-sm border border-white/30 rounded-lg text-white placeholder-white/50 focus:outline-none focus:border-orange-400 focus:ring-1 focus:ring-orange-400/30 transition-all duration-300"
               placeholder="Enter your email"
               required
             />
@@ -108,8 +108,8 @@ const Contact = () => {
               name="message"
               value={formData.message}
               onChange={handleInputChange}
-              rows="5"
-              className="w-full px-4 py-3 bg-white/10 backdrop-blur-sm border border-white/30 rounded-lg text-white placeholder-white/50 focus:outline-none focus:border-orange-400 focus:ring-1 focus:ring-orange-400/30 resize-none transition-all duration-300"
+              rows="4"
+              className="w-full px-4 py-2 md:py-3 bg-white/10 backdrop-blur-sm border border-white/30 rounded-lg text-white placeholder-white/50 focus:outline-none focus:border-orange-400 focus:ring-1 focus:ring-orange-400/30 resize-none transition-all duration-300"
               placeholder="Enter your message"
               required
             />
@@ -118,7 +118,7 @@ const Contact = () => {
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
             type="submit"
-            className="w-full bg-gradient-to-r from-[#FF7C1D] to-[#F53232] hover:from-[#FF9140] hover:to-[#FF5252] text-white py-4 rounded-lg font-medium transition-all duration-300 shadow-lg hover:shadow-[#FF7C1D]/30"
+            className="w-full bg-gradient-to-r from-[#FF7C1D] to-[#F53232] hover:from-[#FF9140] hover:to-[#FF5252] text-white py-3 md:py-4 rounded-lg font-medium transition-all duration-300 shadow-lg hover:shadow-[#FF7C1D]/30 text-sm md:text-base"
           >
             Send Message
           </motion.button>

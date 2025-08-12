@@ -1,6 +1,4 @@
 import { motion } from 'framer-motion';
-
-// Import images for each project
 import waterQuality from '../images/water_quality.png';
 import AgroRobot from '../images/AgroRobot.jpg';
 import hotel from '../images/hotel.png';
@@ -12,7 +10,7 @@ const projects = [
     tags: ["ESP32", "Firebase", "Kotlin", "React", "Python"],
     accent: "bg-[#ffffff]",
     image: waterQuality,
-    githubUrl: "https://github.com/HimaliWimansa/WaterQualityMobileApp" // Add your actual GitHub URL
+    githubUrl: "https://github.com/HimaliWimansa/WaterQualityMobileApp"
   },
   {
     title: "Autonomous Multitasking Agro-Robot",
@@ -20,7 +18,7 @@ const projects = [
     tags: ["Arduino UNO", "Motor Driver", "Ultrasonic Sensor", "Arduino IDE"],
     accent: "bg-[#ffffff]",
     image: AgroRobot,
-    githubUrl: "https://github.com/HimaliWimansa/agro-robot" // Add your actual GitHub URL
+    githubUrl: "https://github.com/HimaliWimansa/agro-robot"
   },
   {
     title: "Hotel Management System",
@@ -28,9 +26,8 @@ const projects = [
     tags: ["HTML", "CSS", "JavaScript", "PHP", "MySQL"],
     accent: "bg-[#ffffff]",
     image: hotel,
-    githubUrl: "https://github.com/HimaliWimansa/HotelManagementSystem" // Add your actual GitHub URL
+    githubUrl: "https://github.com/HimaliWimansa/HotelManagementSystem"
   },
-  // Add other projects...
 ];
 
 const Projects = () => {
@@ -39,20 +36,19 @@ const Projects = () => {
   };
 
   return (
-    <section id="projects" className="py-20">
-      <div className="max-w-6xl mx-auto px-6">
+    <section id="projects" className="py-16 md:py-20">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <motion.h2 
-  initial={{ opacity: 0, y: 20 }}
-  whileInView={{ opacity: 1, y: 0 }}
-  transition={{ duration: 0.6 }}
-  viewport={{ once: true }}
-  className="text-5xl font-bold text-center mb-16 text-white tracking-wide drop-shadow-lg"
->
-  My Projects
-</motion.h2>
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-12 md:mb-16 text-white tracking-wide drop-shadow-lg"
+        >
+          My Projects
+        </motion.h2>
 
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {projects.map((project, index) => (
             <motion.div
               key={index}
@@ -64,8 +60,7 @@ const Projects = () => {
               className="group cursor-pointer"
               onClick={() => handleProjectClick(project.githubUrl)}
             >
-              <div className="h-full bg-white/20 backdrop-blur-sm border border-white/20 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-500 hover:border-orange-400/50 max-w-[350px] mx-auto">
-                
+              <div className="h-full bg-white/20 backdrop-blur-sm border border-white/20 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-500 hover:border-orange-400/50 mx-auto w-full max-w-md">
                 {/* Accent bar */}
                 <div className={`h-1 ${project.accent}`}></div>
                 
@@ -73,24 +68,24 @@ const Projects = () => {
                 <img 
                   src={project.image} 
                   alt={project.title} 
-                  className="w-full h-48 object-cover"
+                  className="w-full h-40 sm:h-48 object-cover"
                 />
                 
                 {/* Project Info */}
-                <div className="p-6">
-                  <h3 className="text-xl font-bold text-white mb-3">{project.title}</h3>
-                  <p className="text-gray-300 mb-5" style={{color: "#150B20"}}>{project.description}</p>
-                  <div className="flex flex-wrap gap-2 mb-4">
+                <div className="p-4 sm:p-6">
+                  <h3 className="text-lg sm:text-xl font-bold text-white mb-2 sm:mb-3">{project.title}</h3>
+                  <p className="text-sm sm:text-base text-gray-300 mb-4 sm:mb-5" style={{color: "#150B20"}}>{project.description}</p>
+                  <div className="flex flex-wrap gap-1 sm:gap-2 mb-3 sm:mb-4">
                     {project.tags.map((tag, i) => (
                       <span 
                         key={i} 
-                        className="bg-[#6532F5]/10 text-[#211231] text-xs px-3 py-1 rounded-full border border-[#211231]/20"
+                        className="bg-[#6532F5]/10 text-[#211231] text-xs px-2 py-1 rounded-full border border-[#211231]/20"
                       >
                         {tag}
                       </span>
                     ))}
                   </div>
-                  <div className="text-[#211231] hover:text-[#FF9140] text-sm font-medium flex items-center transition-colors duration-300">
+                  <div className="text-[#211231] hover:text-[#FF9140] text-xs sm:text-sm font-medium flex items-center transition-colors duration-300">
                     View Project →
                   </div>
                 </div>

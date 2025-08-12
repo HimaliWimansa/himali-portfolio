@@ -54,14 +54,15 @@ const Education = () => {
 
       <div className="max-w-5xl mx-auto px-6 relative z-10">
         <motion.h2 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="text-6xl font-bold text-center mb-20 text-white"
-        >
-          Education Journey
-        </motion.h2>
+  initial={{ opacity: 0, y: 20 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.6 }}
+  viewport={{ once: true }}
+  className="text-5xl font-bold text-center mb-20 text-white tracking-wide drop-shadow-lg"
+>
+  Education Journey
+</motion.h2>
+
         
         <div className="relative">
           {/* Colorful timeline */}
@@ -94,14 +95,14 @@ const Education = () => {
                 <div className={`w-5/6 ${index % 2 === 0 ? 'pr-16' : 'pl-16'}`}>
                   <motion.div 
                     whileHover={{ scale: 1.03 }}
-                    className="bg-[#211231]/50 backdrop-blur-lg border border-white/10 rounded-2xl p-8 shadow-xl transition-all duration-300"
+                    className="bg-[#ffffff]/20 backdrop-blur-lg border border-white/10 rounded-2xl p-8 shadow-xl transition-all duration-300"
                     style={{
                       boxShadow: `0 10px 25px -5px ${item.accentColor}30`,
                       borderLeftColor: item.accentColor,
                       borderLeftWidth: '4px'
                     }}
                   >
-                    <h4 className="text-white font-bold text-xl mb-3">
+                    <h4 className="font-bold text-xl mb-3" style={{color: "#150B20"}}>
                       {item.institution}
                       {item.isCurrent && (
                         <span 
@@ -115,8 +116,8 @@ const Education = () => {
                         </span>
                       )}
                     </h4>
-                    <p className="text-white/90 text-lg mb-2">{item.degree}</p>
-                    <p className="text-white/70 text-base">{item.period}</p>
+                   <p className="text-lg mb-2" style={{color: "#150B20"}}>{item.degree}</p>
+                    <p className="text-base" style={{color: "#150B20"}}>{item.period}</p>
                   </motion.div>
                 </div>
               </motion.div>

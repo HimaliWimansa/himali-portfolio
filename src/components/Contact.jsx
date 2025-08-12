@@ -1,39 +1,48 @@
 import { motion } from 'framer-motion';
 import { useState } from 'react';
+import { init, send } from '@emailjs/browser';
+
+// Initialize EmailJS with your Public Key (User ID)
+init('k0NRg3IvJo5j-EtVV');
 
 const Contact = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: ''
-  });
+  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
 
   const handleInputChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
-    alert('Message sent! I\'ll get back to you soon.');
-    setFormData({ name: '', email: '', message: '' });
+
+    send(
+      'service_u9h1zha',        // your Service ID
+      'template_o6p9nlh',       // your Template ID
+      formData                  // the data object with name, email, message
+    )
+    .then(() => {
+      alert("Message sent! ");
+      setFormData({ name: '', email: '', message: '' });
+    })
+    .catch((error) => {
+      console.error("Email send error:", error);
+      alert('Failed to send message. Please try again later.');
+    });
   };
 
   return (
     <section id="contact" className="py-20">
       <div className="max-w-2xl mx-auto px-6">
-        <motion.h2 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="text-6xl font-bold text-center mb-16 text-white"
-        >
-          Get In Touch
-        </motion.h2>
+        <motion.h2
+  initial={{ opacity: 0, y: 20 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.6 }}
+  viewport={{ once: true }}
+  className="text-5xl font-bold text-center mb-16 text-white tracking-wide drop-shadow-lg"
+>
+  Get In Touch
+</motion.h2>
+
         <motion.form 
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}

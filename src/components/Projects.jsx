@@ -10,41 +10,47 @@ const projects = [
     title: "IoT Water Quality Monitoring System",
     description: "Real-time system detecting contaminants with ESP32 and machine learning alerts",
     tags: ["ESP32", "Firebase", "Kotlin", "React", "Python"],
-    accent: "bg-[#6532F5]",
-    image: waterQuality
+    accent: "bg-[#ffffff]",
+    image: waterQuality,
+    githubUrl: "https://github.com/HimaliWimansa/WaterQualityMobileApp" // Add your actual GitHub URL
   },
   {
     title: "Autonomous Multitasking Agro-Robot",
     description: "An Arduino-powered agricultural robot designed to automate planting, watering, and digging in large-scale farming",
-   tags: ["Arduino UNO", "Motor Driver", "Ultrasonic Sensor", "Arduino IDE"],
-
-    accent: "bg-[#6532F5]",
-    image: AgroRobot
+    tags: ["Arduino UNO", "Motor Driver", "Ultrasonic Sensor", "Arduino IDE"],
+    accent: "bg-[#ffffff]",
+    image: AgroRobot,
+    githubUrl: "https://github.com/HimaliWimansa/agro-robot" // Add your actual GitHub URL
   },
- {
+  {
     title: "Hotel Management System",
-    description: " A web-based Hotel Management System for Crown & Crown Boutique Hotel, developed to replace the manual booking process with an efficient online reservation platform",
-   tags: ["HTML", "CSS", "JavaScript", "PHP", "MySQL"],
-
-    accent: "bg-[#6532F5]",
-    image: hotel
+    description: "A web-based Hotel Management System for Crown & Crown Boutique Hotel, developed to replace the manual booking process with an efficient online reservation platform",
+    tags: ["HTML", "CSS", "JavaScript", "PHP", "MySQL"],
+    accent: "bg-[#ffffff]",
+    image: hotel,
+    githubUrl: "https://github.com/HimaliWimansa/HotelManagementSystem" // Add your actual GitHub URL
   },
   // Add other projects...
 ];
 
 const Projects = () => {
+  const handleProjectClick = (url) => {
+    window.open(url, '_blank', 'noopener,noreferrer');
+  };
+
   return (
     <section id="projects" className="py-20">
       <div className="max-w-6xl mx-auto px-6">
         <motion.h2 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="text-6xl font-bold text-center mb-16 text-white"
-        >
-          My Projects
-        </motion.h2>
+  initial={{ opacity: 0, y: 20 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.6 }}
+  viewport={{ once: true }}
+  className="text-5xl font-bold text-center mb-16 text-white tracking-wide drop-shadow-lg"
+>
+  My Projects
+</motion.h2>
+
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map((project, index) => (
@@ -56,11 +62,12 @@ const Projects = () => {
               whileHover={{ y: -10 }}
               transition={{ duration: 0.5 }}
               className="group cursor-pointer"
+              onClick={() => handleProjectClick(project.githubUrl)}
             >
-              <div className="h-full bg-black/50 backdrop-blur-sm border border-white/20 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-500 hover:border-orange-400/50 max-w-[350px] mx-auto">
+              <div className="h-full bg-white/20 backdrop-blur-sm border border-white/20 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-500 hover:border-orange-400/50 max-w-[350px] mx-auto">
                 
                 {/* Accent bar */}
-                <div className={`h-2 ${project.accent}`}></div>
+                <div className={`h-1 ${project.accent}`}></div>
                 
                 {/* Project Image */}
                 <img 
@@ -72,22 +79,21 @@ const Projects = () => {
                 {/* Project Info */}
                 <div className="p-6">
                   <h3 className="text-xl font-bold text-white mb-3">{project.title}</h3>
-                  <p className="text-gray-300 mb-5">{project.description}</p>
+                  <p className="text-gray-300 mb-5" style={{color: "#150B20"}}>{project.description}</p>
                   <div className="flex flex-wrap gap-2 mb-4">
                     {project.tags.map((tag, i) => (
                       <span 
                         key={i} 
-                        className="bg-[#6532F5]/10 text-[#6532F5] text-xs px-3 py-1 rounded-full border border-[#6532F5]/20"
+                        className="bg-[#6532F5]/10 text-[#211231] text-xs px-3 py-1 rounded-full border border-[#211231]/20"
                       >
                         {tag}
                       </span>
                     ))}
                   </div>
-                  <div className="text-[#FF7C1D] hover:text-[#FF9140] text-sm font-medium flex items-center transition-colors duration-300">
+                  <div className="text-[#211231] hover:text-[#FF9140] text-sm font-medium flex items-center transition-colors duration-300">
                     View Project →
                   </div>
                 </div>
-
               </div>
             </motion.div>
           ))}
